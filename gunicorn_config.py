@@ -1,18 +1,16 @@
-import multiprocessing
-
 # Server socket configuration
 bind = "0.0.0.0:10000"
-backlog = 2048
+backlog = 1024
 
-# Worker processes
-workers = multiprocessing.cpu_count() * 2 + 1
+# Worker processes - optimized for Render free tier
+workers = 1  # Single worker to minimize memory usage
 worker_class = 'sync'
-worker_connections = 1000
-timeout = 300
-keepalive = 2
+worker_connections = 100
+timeout = 180
+keepalive = 5
 
 # Process naming
-proc_name = 'neurofarm'
+proc_name = 'neurofarm-render'
 
 # Logging
 loglevel = 'info'
