@@ -84,9 +84,13 @@ export const CropRecommendation: React.FC = () => {
     form.append('season', formData.season);
 
     try {
-      const response = await fetch('http://127.0.0.1:5000/predict', {
+      const apiUrl = import.meta.env.VITE_API_URL || 'http://127.0.0.1:5000';
+      const response = await fetch(`${apiUrl}/predict`, {
         method: 'POST',
         body: form,
+        headers: {
+          'Accept': 'application/json',
+        },
       });
 
       const data = await response.json();
